@@ -7,3 +7,7 @@ Lab 8 - Maze
 
 Console.Clear();
 Console.WriteLine("Welcome to the Maze! You will use your arrow keys to navigate the maze.");
+Console.WriteLine();
+
+string[] maprows = File.ReadAllLines("./map.txt");
+foreach (string item in maprows) Console.WriteLine(item);
