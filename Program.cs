@@ -11,20 +11,47 @@ Console.WriteLine();
 
 string[] maprows = File.ReadAllLines("./map.txt");
 foreach (string item in maprows) Console.WriteLine(item);
-(int x, int y) cursorPosition = (0, 2);
+(int x, int y) buffer = (0, 2);
+(int x, int y) cursorPosition = (buffer.x, buffer.y);
+
 Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
 
 do
 {
     System.ConsoleKey key = Console.ReadKey(true).Key;
+
     if (key == ConsoleKey.Escape) break;
-    else if (key == ConsoleKey.UpArrow) cursorPosition.y--;
-    else if (key == ConsoleKey.DownArrow) cursorPosition.y++;
-    else if (key == ConsoleKey.RightArrow) cursorPosition.x++;
-    else if (key == ConsoleKey.LeftArrow) cursorPosition.x--;
-    else continue;
-    if (cursorPosition.x < 0) cursorPosition.x = 0;
-    if (cursorPosition.y < 0) cursorPosition.y = 0;
+    else cursorPosition = CheckKeys(cursorPosition, key, buffer, maprows);
+    //else continue;
+    if (maprows[cursorPosition.y - buffer.y][cursorPosition.x] == '*') break;
+    Console.SetCursorPosition(0, 10);
+    //Console.WriteLine(maprows[cursorPosition.y]);
     Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
+
 }
 while (true);
+
+Console.SetCursorPosition(0, 10);
+Console.WriteLine("You win!");
+
+
+static (int, int) CheckKeys((int x, int y) cursorPosition, ConsoleKey key, (int x, int y) buffer, string[] maprows)
+{
+    Console.Write(maprows[cursorPosition.y-buffer.y][cursorPosition.x]);
+    if (key == ConsoleKey.UpArrow && maprows[cursorPosition.y-buffer.y-1][cursorPosition.x] != '#') cursorPosition.y--;
+    else if (key == ConsoleKey.DownArrow && maprows[cursorPosition.y-buffer.y+1][cursorPosition.x] != '#') cursorPosition.y++;
+    else if (key == ConsoleKey.RightArrow&& maprows[cursorPosition.y-buffer.y][cursorPosition.x+1] != '#') cursorPosition.x++;
+    else if (key == ConsoleKey.LeftArrow&& maprows[cursorPosition.y-buffer.y][cursorPosition.x-1] != '#') cursorPosition.x--;
+
+    
+    if (cursorPosition.x < buffer.x) cursorPosition.x = buffer.x;
+    else if (cursorPosition.x > maprows[0].Length) cursorPosition.x = maprows[0].Length;
+    if (cursorPosition.y < buffer.y) cursorPosition.y = buffer.y;
+    else if (cursorPosition.y > maprows.Length) cursorPosition.y = maprows.Length;// + buffer.y;
+    Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
+
+
+
+
+    return cursorPosition;
+}
