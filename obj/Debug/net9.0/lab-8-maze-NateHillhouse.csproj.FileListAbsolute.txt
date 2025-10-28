@@ -1,0 +1,15 @@
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\bin\Debug\net9.0\lab-8-maze-NateHillhouse.exe
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\bin\Debug\net9.0\lab-8-maze-NateHillhouse.deps.json
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\bin\Debug\net9.0\lab-8-maze-NateHillhouse.runtimeconfig.json
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\bin\Debug\net9.0\lab-8-maze-NateHillhouse.dll
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\bin\Debug\net9.0\lab-8-maze-NateHillhouse.pdb
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.AssemblyInfoInputs.cache
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.AssemblyInfo.cs
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.csproj.CoreCompileInputs.cache
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.sourcelink.json
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.dll
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\refint\lab-8-maze-NateHillhouse.dll
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.pdb
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\lab-8-maze-NateHillhouse.genruntimeconfig.cache
+C:\Users\nhill_mliw72r\Documents\Code_Projects\my-code-dir\lab-8-maze-NateHillhouse\obj\Debug\net9.0\ref\lab-8-maze-NateHillhouse.dll
