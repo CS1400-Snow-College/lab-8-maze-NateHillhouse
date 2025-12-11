@@ -1,57 +1,142 @@
-﻿/*
+﻿/* 
 Nathan Hillhouse
 10/24/2025
 Lab 8 - Maze
 */
 
-
-Console.Clear();
-Console.WriteLine("Welcome to the Maze! You will use your arrow keys to navigate the maze.");
-Console.WriteLine();
+Random rand = new Random();
 
 string[] maprows = File.ReadAllLines("./map.txt");
-foreach (string item in maprows) Console.WriteLine(item);
-(int x, int y) buffer = (0, 2);
-(int x, int y) cursorPosition = (buffer.x, buffer.y);
+char playercharacter = '█';
+char[,] grid = new char[maprows.Length, maprows[0].Length];
+char walls = '#';
+char finish = '*';
 
-Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
+//Transfer data into grid
+for (int i = 0; i < maprows.Length; i++)
+    for (int j = 0; j < maprows[0].Length; j++)
+        grid[i, j] = maprows[i][j];
+
+(int x, int y) playerlocation = (0, 0);
+
+grid[playerlocation.y, playerlocation.x] = playercharacter;
+
+Console.CursorVisible = false;
+DrawGrid();
 
 do
 {
-    System.ConsoleKey key = Console.ReadKey(true).Key;
+    ConsoleKey key = Console.ReadKey(true).Key;
 
-    if (key == ConsoleKey.Escape) break;
-    else cursorPosition = CheckKeys(cursorPosition, key, buffer, maprows);
-    //else continue;
-    if (maprows[cursorPosition.y - buffer.y][cursorPosition.x] == '*') break;
-    Console.SetCursorPosition(0, 10);
-    //Console.WriteLine(maprows[cursorPosition.y]);
-    Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
+    Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
 
-}
-while (true);
+    if (key == ConsoleKey.Escape)
+    {
+        Console.WriteLine("You exited the game.");
+        break;
+    }
+    else if (key == ConsoleKey.RightArrow)
+    {
+        if (Collision(grid, new(playerlocation.x + 1, playerlocation.y)))
+        {
+            Console.Write(" ");
 
-Console.SetCursorPosition(0, 10);
-Console.WriteLine("You win!");
+            playerlocation.x = playermovement(1, playerlocation.x);
 
+            if (grid[playerlocation.y, playerlocation.x] == finish) break;
 
-static (int, int) CheckKeys((int x, int y) cursorPosition, ConsoleKey key, (int x, int y) buffer, string[] maprows)
+            grid[playerlocation.y, playerlocation.x] = playercharacter;
+
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.Write(playercharacter);
+        }
+        continue;
+    }
+    else if (key == ConsoleKey.LeftArrow)
+    {
+        if (Collision(grid, new(playerlocation.x - 1, playerlocation.y)))
+        {
+            Console.Write(" ");
+
+            playerlocation.x = playermovement(-1, playerlocation.x);
+
+            if (grid[playerlocation.y, playerlocation.x] == finish) break;
+
+            grid[playerlocation.y, playerlocation.x] = playercharacter;
+
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.Write(playercharacter);
+        }
+        continue;
+    }
+    else if (key == ConsoleKey.UpArrow)
+    {
+        if (Collision(grid, new(playerlocation.x, playerlocation.y - 1)))
+        {
+            Console.Write(" ");
+
+            playerlocation.y = playermovement(-1, playerlocation.y);
+
+            if (grid[playerlocation.y, playerlocation.x] == finish) break;
+
+            grid[playerlocation.y, playerlocation.x] = playercharacter;
+
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.Write(playercharacter);
+        }
+        continue;
+    }
+    else if (key == ConsoleKey.DownArrow)
+    {
+        if (Collision(grid, new(playerlocation.x, playerlocation.y + 1)))
+        {
+            Console.Write(" ");
+            playerlocation.y = playermovement(1, playerlocation.y);
+
+            if (grid[playerlocation.y, playerlocation.x] == finish) break;
+
+            grid[playerlocation.y, playerlocation.x] = playercharacter;
+
+            
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.Write(playercharacter);
+        }
+        continue;
+    }
+
+} while (true);
+
+Console.SetCursorPosition(0, grid.GetLength(0) + 3);
+Console.WriteLine("You Win! ");
+
+bool Collision(char[,] grid, (int x, int y) location)
 {
-    Console.Write(maprows[cursorPosition.y-buffer.y][cursorPosition.x]);
-    if (key == ConsoleKey.UpArrow && maprows[cursorPosition.y-buffer.y-1][cursorPosition.x] != '#') cursorPosition.y--;
-    else if (key == ConsoleKey.DownArrow && maprows[cursorPosition.y-buffer.y+1][cursorPosition.x] != '#') cursorPosition.y++;
-    else if (key == ConsoleKey.RightArrow&& maprows[cursorPosition.y-buffer.y][cursorPosition.x+1] != '#') cursorPosition.x++;
-    else if (key == ConsoleKey.LeftArrow&& maprows[cursorPosition.y-buffer.y][cursorPosition.x-1] != '#') cursorPosition.x--;
+    if (location.x < 0 || location.y < 0 || location.x >= grid.GetLength(1) || location.y >= grid.GetLength(0) ||
+        grid[location.y, location.x] == walls)
+        return false;
 
-    
-    if (cursorPosition.x < buffer.x) cursorPosition.x = buffer.x;
-    else if (cursorPosition.x > maprows[0].Length) cursorPosition.x = maprows[0].Length;
-    if (cursorPosition.y < buffer.y) cursorPosition.y = buffer.y;
-    else if (cursorPosition.y > maprows.Length) cursorPosition.y = maprows.Length;// + buffer.y;
-    Console.SetCursorPosition(cursorPosition.x, cursorPosition.y);
+    return true;
+}
 
+int playermovement(int movement, int location)
+{
+    grid[playerlocation.y, playerlocation.x] = ' ';
+    location += movement;
+    return location;
+}
 
+void DrawGrid()
+{
+    Console.Clear();
+    Console.WriteLine("Welcome to the Maze! You will use your arrow keys to navigate the maze.");
+    Console.WriteLine();
 
-
-    return cursorPosition;
+    for (int i = 0; i < maprows.Length; i++)
+    {
+        for (int j = 0; j < maprows[0].Length; j++)
+        {
+            Console.Write(grid[i, j]);
+        }
+        Console.WriteLine();
+    }
 }
