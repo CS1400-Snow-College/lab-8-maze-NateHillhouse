@@ -28,7 +28,7 @@ do
 {
     ConsoleKey key = Console.ReadKey(true).Key;
 
-    Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+    Console.SetCursorPosition(playerlocation.x, playerlocation.y+2);
 
     if (key == ConsoleKey.Escape)
     {
@@ -47,7 +47,7 @@ do
 
             grid[playerlocation.y, playerlocation.x] = playercharacter;
 
-            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+2);
             Console.Write(playercharacter);
         }
         continue;
@@ -64,7 +64,7 @@ do
 
             grid[playerlocation.y, playerlocation.x] = playercharacter;
 
-            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+2);
             Console.Write(playercharacter);
         }
         continue;
@@ -81,7 +81,7 @@ do
 
             grid[playerlocation.y, playerlocation.x] = playercharacter;
 
-            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+2);
             Console.Write(playercharacter);
         }
         continue;
@@ -98,7 +98,7 @@ do
             grid[playerlocation.y, playerlocation.x] = playercharacter;
 
             
-            Console.SetCursorPosition(playerlocation.x, playerlocation.y+3);
+            Console.SetCursorPosition(playerlocation.x, playerlocation.y+2);
             Console.Write(playercharacter);
         }
         continue;
